@@ -222,7 +222,7 @@ export default function NightSecurityPage() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Don't Let the Dark Compromise Your Security
+            Don&apos;t Let the Dark Compromise Your Security
           </h2>
           <p className="text-slate-300 font-medium mb-10 text-lg">
             Upgrade to our ColorHunter technology and get unmatched clarity when you need it most.

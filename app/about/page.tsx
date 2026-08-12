@@ -36,10 +36,10 @@ export default function AboutPage() {
               Our Story
             </span>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              We Don't Just Sell Cameras. <br/><span className="text-brand-blue">We Engineer Peace of Mind.</span>
+              We Don&apos;t Just Sell Cameras. <br/><span className="text-brand-blue">We Engineer Peace of Mind.</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
-              Lovosis was built on a simple premise: enterprise-grade security shouldn't be overly complicated or impossibly expensive. We bring you the hardware, the software, and the support you actually need.
+              Lovosis was built on a simple premise: enterprise-grade security shouldn&apos;t be overly complicated or impossibly expensive. We bring you the hardware, the software, and the support you actually need.
             </p>
           </motion.div>
         </div>

@@ -223,10 +223,10 @@ export default function FarmSolutionsPage() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Secure Your Farm's Future
+            Secure Your Farm&apos;s Future
           </h2>
           <p className="text-slate-300 font-medium mb-10 text-lg">
-            Don't let vast perimeters and lack of power leave your livelihood vulnerable. Get a customized, off-grid security system today.
+            Don&apos;t let vast perimeters and lack of power leave your livelihood vulnerable. Get a customized, off-grid security system today.
           </p>
           <button
             onClick={() => triggerQuoteModal('Farm Security Consultation')}

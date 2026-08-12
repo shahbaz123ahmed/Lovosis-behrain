@@ -50,7 +50,7 @@ export default function TestimonialsCTA() {
                 </div>
                 {/* Testimonial message */}
                 <p className="text-slate-600 leading-relaxed font-medium text-sm md:text-base">
-                  "{test.comment}"
+                  &quot;{test.comment}&quot;
                 </p>
               </div>
 

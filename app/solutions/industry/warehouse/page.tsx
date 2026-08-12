@@ -195,7 +195,7 @@ export default function WarehouseSolutionsPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-brand-navy mb-4">Storage Aisles</h3>
                 <p className="text-slate-600 font-medium leading-relaxed mb-6">
-                  Long, narrow aisles are notoriously difficult to monitor. We utilize Corridor Mode technology (9:16 aspect ratio) to maximize depth visibility, ensuring you don't waste pixels on the shelves but focus on the aisle itself.
+                  Long, narrow aisles are notoriously difficult to monitor. We utilize Corridor Mode technology (9:16 aspect ratio) to maximize depth visibility, ensuring you don&apos;t waste pixels on the shelves but focus on the aisle itself.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2 text-sm font-bold text-slate-700">
