@@ -73,7 +73,7 @@ export default function HotelSolutionsPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl font-bold text-brand-navy mb-4">Balancing Safety with Aesthetics</h2>
             <p className="text-slate-600 font-medium leading-relaxed">
-              In hospitality, the guest experience is everything. Security systems must be robust enough to protect guests and assets, yet discreet enough not to feel intrusive or ruin the hotel's aesthetic.
+              In hospitality, the guest experience is everything. Security systems must be robust enough to protect guests and assets, yet discreet enough not to feel intrusive or ruin the hotel&apos;s aesthetic.
             </p>
           </div>
 
@@ -217,7 +217,7 @@ export default function HotelSolutionsPage() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Elevate Your Hotel's Security Standards
+            Elevate Your Hotel&apos;s Security Standards
           </h2>
           <p className="text-slate-300 font-medium mb-10 text-lg max-w-2xl mx-auto">
             Contact our hospitality experts to design a discreet, premium security system that protects your guests and brand.

@@ -40,7 +40,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { categories } from '@/data/products';
-import { solutionsMegaMenuData } from '@/data/solutions';
+import { solutionsMegaMenuData, solutions } from '@/data/solutions';
 import { triggerQuoteModal } from '@/components/common/QuoteModal';
 
 import { categoryImages, productMegaMenuData } from '@/data/categories';

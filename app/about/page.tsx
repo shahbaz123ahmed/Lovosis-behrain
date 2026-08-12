@@ -61,7 +61,7 @@ export default function AboutPage() {
                   Security technology moves fast. A few years ago, AI-driven analytics and 4K perimeter defense were reserved for multi-million dollar government projects. Today, every business needs them. But navigating the market to find reliable equipment without getting ripped off is a nightmare.
                 </p>
                 <p>
-                  That's why we started Lovosis. We realized that what businesses actually want isn't just a box of cameras. They want a system that works out of the box, doesn't break down after a year, and comes with a team that picks up the phone when something goes wrong.
+                  That&apos;s why we started Lovosis. We realized that what businesses actually want isn&apos;t just a box of cameras. They want a system that works out of the box, doesn&apos;t break down after a year, and comes with a team that picks up the phone when something goes wrong.
                 </p>
                 <p>
                   By partnering directly with industry leaders like Uniview as an OEM provider, we cut out the middlemen. We control the quality, we control the software ecosystem, and most importantly, we control the customer experience.
@@ -241,7 +241,7 @@ export default function AboutPage() {
             Ready to Build a Safer Environment?
           </h2>
           <p className="text-slate-600 font-medium mb-10 text-lg">
-            Stop dealing with piecemeal security systems. Let's design a unified, intelligent architecture for your business today.
+            Stop dealing with piecemeal security systems. Let&apos;s design a unified, intelligent architecture for your business today.
           </p>
           <Link 
             href="/contact"

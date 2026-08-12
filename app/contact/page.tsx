@@ -179,7 +179,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-bold text-white mb-3 relative z-10">Global Distribution</h3>
               <p className="text-slate-300 font-medium text-sm leading-relaxed relative z-10">
-                We work with authorized dealers worldwide. If you're looking to become a certified Lovosis partner, select "Become a Partner" in the form.
+                We work with authorized dealers worldwide. If you&apos;re looking to become a certified Lovosis partner, select &quot;Become a Partner&quot; in the form.
               </p>
             </div>
 
@@ -189,7 +189,7 @@ export default function ContactPage() {
           <div className="lg:col-span-7 bg-white p-8 md:p-10 rounded-3xl border border-slate-200 shadow-xl shadow-brand-navy/5">
             
             <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">Let's Talk Security</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">Let&apos;s Talk Security</h2>
               <p className="text-slate-500 font-medium">Fill out the form below and the right person from our team will get back to you shortly.</p>
             </div>
 
