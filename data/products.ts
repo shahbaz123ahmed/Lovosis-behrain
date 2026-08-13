@@ -21,7 +21,6 @@ import { speedGates } from './products/speed-gates';
 import { smartElectrical } from './products/smart-electrical';
 import { audioProducts } from './products/audio-products';
 import { accessories } from './products/accessories';
-import { displayControl } from './products/display-control';
 
 export const products: Product[] = [
   ...networkCameras,
@@ -45,7 +44,6 @@ export const products: Product[] = [
   ...smartElectrical,
   ...audioProducts,
   ...accessories,
-  ...displayControl,
 ];
 
 export const categories = [
@@ -69,7 +67,5 @@ export const categories = [
   'Speed Gates',
   'Smart Electrical',
   'Audio Products',
-  'Accessories',
-  'Display & Control',
-  'Dedicated Products'
+  'Accessories'
 ];
