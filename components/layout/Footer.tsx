@@ -24,12 +24,26 @@ const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 import { categories } from '@/data/products';
-import { solutions } from '@/data/solutions';
+import { solutionsMegaMenuData } from '@/data/solutions';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [error, setError] = useState('');
+
+  // Gather all items from solutionsMegaMenuData and filter out specific ones
+  const footerSolutions = [
+    ...(solutionsMegaMenuData['Solutions by Industry']?.items || []),
+    ...(solutionsMegaMenuData['Solutions by Function']?.items || []),
+    ...(solutionsMegaMenuData['SMB Solutions']?.sections?.flatMap(s => s.items) || [])
+  ].filter(sol => ![
+    'Warehouse and Logistics',
+    'Stadium',
+    'Hotel',
+    'Smart intrusion prevention',
+    'Farm',
+    'Ultimate Night Security'
+  ].includes(sol.title));
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,12 +103,6 @@ export default function Footer() {
                 <Link href="/" className="hover:text-brand-blue transition-colors">Home</Link>
               </li>
               <li>
-                <Link href="/products" className="hover:text-brand-blue transition-colors">Products</Link>
-              </li>
-              <li>
-                <Link href="/solutions" className="hover:text-brand-blue transition-colors">Solutions</Link>
-              </li>
-              <li>
                 <Link href="/blog" className="hover:text-brand-blue transition-colors">Security Blog</Link>
               </li>
               <li>
@@ -110,13 +118,16 @@ export default function Footer() {
           <div className="space-y-4">
             <h4 className="font-bold text-sm uppercase tracking-wider text-brand-accent">Products</h4>
             <ul className="space-y-2.5 text-sm text-brand-borderGray/80 font-medium">
-              {categories.slice(0, 6).map((cat) => (
-                <li key={cat}>
-                  <Link href={`/products?category=${encodeURIComponent(cat)}`} className="hover:text-brand-blue transition-colors block truncate">
-                    {cat}
-                  </Link>
-                </li>
-              ))}
+              {categories.slice(0, 6).map((cat) => {
+                const slug = cat.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                return (
+                  <li key={cat}>
+                    <Link href={`/categories/${slug}`} className="hover:text-brand-blue transition-colors block truncate">
+                      {cat}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -124,10 +135,10 @@ export default function Footer() {
           <div className="space-y-4">
             <h4 className="font-bold text-sm uppercase tracking-wider text-brand-accent">Solutions</h4>
             <ul className="space-y-2.5 text-sm text-brand-borderGray/80 font-medium">
-              {solutions.map((sol) => (
-                <li key={sol.id}>
-                  <Link href={`/solutions/${sol.slug}`} className="hover:text-brand-blue transition-colors block truncate">
-                    {sol.name}
+              {footerSolutions.map((sol) => (
+                <li key={sol.title}>
+                  <Link href={sol.href} className="hover:text-brand-blue transition-colors block truncate">
+                    {sol.title}
                   </Link>
                 </li>
               ))}

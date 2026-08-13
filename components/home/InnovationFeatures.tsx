@@ -1,6 +1,5 @@
 "use client";
 
-import Link from 'next/link';
 import { Cpu, ShieldCheck, Lightbulb, Lock, Eye } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -65,20 +64,6 @@ export default function InnovationFeatures() {
                 <p className="text-xs sm:text-sm text-brand-text leading-relaxed font-semibold mt-2.5">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit elit turpis, a porttitor tellus sollicitudin at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
                 </p>
-              </div>
-
-              {/* Custom Outline Button (Left and Bottom Blue Border) */}
-              <div className="mt-5 self-start">
-                <Link
-                  href="/products"
-                  className="relative inline-flex items-center justify-center px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-brand-blue hover:bg-brand-blue/5 transition-colors duration-300"
-                >
-                  {/* Custom outline: left border */}
-                  <span className="absolute left-0 bottom-0 top-0 w-[2px] bg-brand-blue" />
-                  {/* Custom outline: bottom border */}
-                  <span className="absolute left-0 bottom-0 right-0 h-[2px] bg-brand-blue" />
-                  View Our Store
-                </Link>
               </div>
             </div>
           </motion.div>

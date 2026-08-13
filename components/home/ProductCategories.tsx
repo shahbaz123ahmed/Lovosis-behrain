@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { Camera, Eye, Server, Key, Tv, Fingerprint, HardDrive, Cpu, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { productMegaMenuData, categoryImages } from '@/data/categories';
+
 
 const categoriesData = [
   {
@@ -83,6 +85,8 @@ export default function ProductCategories() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {categoriesData.map((cat, idx) => {
             const Icon = cat.icon;
+            const menuData = productMegaMenuData[cat.title];
+            const imageUrl = menuData?.items?.[0]?.image || categoryImages[cat.title] || cat.img;
 
             return (
               <motion.div
@@ -95,16 +99,17 @@ export default function ProductCategories() {
               >
                 <div>
                   {/* Category Image Area */}
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-brand-softGray relative rounded-none">
+                  <div className="aspect-[4/3] w-full overflow-hidden bg-brand-softGray relative rounded-none flex items-center justify-center p-6 bg-slate-50/50 group-hover:bg-[#F1F7FE]/30 transition-colors">
                     <img
-                      src={cat.img}
+                      src={imageUrl}
                       alt={cat.title}
                       onError={(e) => {
                         // fallback to a service image if specific category image doesn't exist yet
                         e.currentTarget.src = `/section/serv${(idx % 3) + 1}.jpg`;
                       }}
-                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
+                      className="max-h-full max-w-full object-contain group-hover:scale-108 transition-transform duration-500 ease-out"
                     />
+
 
                     {/* Subtle Overlay on Hover */}
                     <div className="absolute inset-0 bg-brand-navy/0 group-hover:bg-brand-navy/20 transition-all duration-300" />

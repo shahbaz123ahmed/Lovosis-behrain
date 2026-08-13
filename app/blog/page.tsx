@@ -72,7 +72,7 @@ const recentPosts = [
     author: 'Lovosis Security Team',
     date: 'June 22, 2026',
     readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1563207153-f404786d5e78?q=80&w=2071&auto=format&fit=crop'
+    image: '/cyber.png'
   },
   {
     id: 7,

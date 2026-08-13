@@ -196,7 +196,7 @@ export default function Hero() {
                     className="pt-4 sm:pt-6"
                   >
                     <Link
-                      href="/products"
+                      href="/categories/access-control"
                       className="inline-flex items-center justify-center gap-2 bg-white text-[#1489f5] hover:bg-cyan-50 font-extrabold px-8 py-3.5 rounded-full text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-[1.02]"
                     >
                       Read More
@@ -274,7 +274,7 @@ export default function Hero() {
                   </div>
                 </motion.div>
 
-                {/* 4. White Border Button glides up slowly */}
+                {/* White Border Button glides up slowly */}
                 <motion.div
                   initial={{ opacity: 0, y: 35 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -282,7 +282,7 @@ export default function Hero() {
                   className="pt-2"
                 >
                   <Link
-                    href="/products"
+                    href="/categories/network-cameras"
                     className="inline-flex items-center justify-center border border-white text-white hover:bg-white hover:text-black font-semibold px-6 sm:px-8 py-2 sm:py-2.5 rounded-none text-xs sm:text-xs tracking-wider uppercase transition-all duration-300 shadow-md"
                   >
                     Read More
@@ -326,7 +326,7 @@ export default function Hero() {
                   We guarantee you total safety and happiness
                 </motion.p>
 
-                {/* 4. White Border Outline Button: Glides UP (delay: 4.0s) */}
+                {/* White Border Outline Button: Glides UP (delay: 4.0s) */}
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -334,7 +334,7 @@ export default function Hero() {
                   className="pt-2"
                 >
                   <Link
-                    href="/products"
+                    href="/categories/analog-cameras"
                     className="inline-flex items-center justify-center border border-white/90 text-white hover:bg-white hover:text-[#1489f5] font-semibold px-7 sm:px-9 py-2 sm:py-2.5 rounded-none text-xs sm:text-xs tracking-wider uppercase transition-all duration-300 shadow-md backdrop-blur-xs"
                   >
                     Read More
@@ -414,7 +414,7 @@ export default function Hero() {
                   className="pt-2"
                 >
                   <Link
-                    href="/products"
+                    href="/categories/network-video-recorders"
                     className="inline-flex items-center justify-center border border-white text-white hover:bg-white hover:text-black font-semibold px-7 sm:px-9 py-2.5 sm:py-3 rounded-none text-xs sm:text-xs tracking-wider uppercase transition-all duration-300 shadow-md"
                   >
                     Read More
@@ -497,7 +497,7 @@ export default function Hero() {
                   className="pt-2"
                 >
                   <Link
-                    href="/products"
+                    href="/categories/ptz-cameras"
                     className="inline-flex items-center justify-center border border-white text-white hover:bg-white hover:text-[#1489f5] font-semibold px-7 sm:px-9 py-2.5 sm:py-3 rounded-none text-xs sm:text-xs tracking-wider uppercase transition-all duration-300 shadow-md"
                   >
                     Read More
