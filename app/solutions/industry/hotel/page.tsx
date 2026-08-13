@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { 
-  Hotel, 
-  ConciergeBell, 
-  DoorClosed, 
-  Car, 
-  Video, 
+import {
+  Hotel,
+  ConciergeBell,
+  DoorClosed,
+  Car,
+  Video,
   Wifi,
   ArrowRight,
   CheckCircle2,
@@ -20,7 +20,7 @@ import { triggerQuoteModal } from '@/components/common/QuoteModal';
 export default function HotelSolutionsPage() {
   return (
     <div className="min-h-screen bg-slate-50">
-      
+
       {/* 1. Hero Section */}
       <section className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-brand-navy z-0">
@@ -38,7 +38,7 @@ export default function HotelSolutionsPage() {
               Hospitality Security
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Hotel & Resort <br/><span className="text-brand-blue">Security Solutions</span>
+              Hotel & Resort <br /><span className="text-brand-blue">Security Solutions</span>
             </h1>
             <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto font-medium">
               Deliver a premium, safe experience for your guests. We provide discreet, aesthetic, and highly effective security solutions for the hospitality industry.
@@ -159,7 +159,7 @@ export default function HotelSolutionsPage() {
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="w-full md:w-1/2">
                 <div className="relative h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl">
-                  <img src="https://images.unsplash.com/photo-1542314831-c6a4d27161b9?q=80&w=2069&auto=format&fit=crop" alt="Hotel Lobbies" className="absolute inset-0 w-full h-full object-cover" />
+                  <img src="/hotel.png" alt="Hotel Lobbies" className="absolute inset-0 w-full h-full object-cover" />
                 </div>
               </div>
               <div className="w-full md:w-1/2">
@@ -214,7 +214,7 @@ export default function HotelSolutionsPage() {
       <section className="py-20 bg-brand-navy relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-lightBlue/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
-        
+
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Elevate Your Hotel&apos;s Security Standards
