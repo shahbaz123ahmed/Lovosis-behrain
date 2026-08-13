@@ -54,6 +54,8 @@ export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
 
   // Active hover category for products mega menu
   const [activeCategory, setActiveCategory] = useState<string>('Network Cameras');
@@ -141,20 +143,35 @@ export default function Navbar() {
                     if (item.type === 'solutions') setSolutionsDropdownOpen(false);
                   }}
                 >
-                  <Link
-                    href={item.href}
-                    className={`flex items-center gap-1 font-semibold text-base transition-colors py-1 ${
-                      (item.href === '/' && pathname === '/') || (item.href !== '/' && pathname.startsWith(item.href))
-                        ? 'text-brand-blue'
-                        : 'text-brand-black hover:text-brand-blue'
-                    }`}
-                  >
-                    {item.name}
-                    {item.hasDropdown && <ChevronDown className="w-4 h-4 opacity-75" />}
-                  </Link>
+                  {item.hasDropdown ? (
+                    <button
+                      type="button"
+                      className={`flex items-center gap-1 font-semibold text-base transition-colors py-1 focus:outline-none cursor-pointer ${
+                        pathname.startsWith(item.href) || (item.type === 'products' && pathname.startsWith('/categories'))
+                          ? 'text-brand-blue'
+                          : 'text-brand-black hover:text-brand-blue'
+                      }`}
+                    >
+                      {item.name}
+                      <ChevronDown className="w-4 h-4 opacity-75" />
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={`flex items-center gap-1 font-semibold text-base transition-colors py-1 ${
+                        (item.href === '/' && pathname === '/') || (item.href !== '/' && pathname.startsWith(item.href))
+                          ? 'text-brand-blue'
+                          : 'text-brand-black hover:text-brand-blue'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
 
                   {/* Active Page Indicator Bar */}
-                  {((item.href === '/' && pathname === '/') || (item.href !== '/' && pathname.startsWith(item.href))) && (
+                  {((item.href === '/' && pathname === '/') || 
+                    (item.href !== '/' && pathname.startsWith(item.href)) ||
+                    (item.type === 'products' && pathname.startsWith('/categories'))) && (
                     <motion.div
                       layoutId="activeTab"
                       className="absolute bottom-[-10px] left-0 right-0 h-[3px] bg-brand-blue rounded-full"
@@ -582,33 +599,57 @@ export default function Navbar() {
                 <nav className="flex flex-col space-y-4">
                   {navItems.map((item) => (
                     <div key={item.name} className="space-y-2">
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={`text-base font-bold transition-colors block ${
-                          (item.href === '/' && pathname === '/') || (item.href !== '/' && pathname.startsWith(item.href))
-                            ? 'text-brand-blue'
-                            : 'text-brand-navy hover:text-brand-blue'
+                      {item.hasDropdown ? (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (item.type === 'products') setMobileProductsOpen(!mobileProductsOpen);
+                            if (item.type === 'solutions') setMobileSolutionsOpen(!mobileSolutionsOpen);
+                          }}
+                          className={`w-full flex items-center justify-between text-base font-bold transition-colors text-left focus:outline-none ${
+                            (item.href !== '/' && pathname.startsWith(item.href)) || (item.type === 'products' && pathname.startsWith('/categories'))
+                              ? 'text-brand-blue'
+                              : 'text-brand-navy hover:text-brand-blue'
+                          }`}
+                        >
+                          <span>{item.name}</span>
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
+                            item.type === 'products' && mobileProductsOpen ? 'transform rotate-180' : 
+                            item.type === 'solutions' && mobileSolutionsOpen ? 'transform rotate-180' : ''
+                          }`} />
+                        </button>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`text-base font-bold transition-colors block ${
+                            (item.href === '/' && pathname === '/') || (item.href !== '/' && pathname.startsWith(item.href))
+                              ? 'text-brand-blue'
+                              : 'text-brand-navy hover:text-brand-blue'
                         }`}
-                      >
-                        {item.name}
-                      </Link>
+                        >
+                          {item.name}
+                        </Link>
+                      )}
 
                       {/* Expandable sub-items for Products and Solutions on mobile */}
-                      {item.type === 'products' && (
+                      {item.type === 'products' && mobileProductsOpen && (
                         <div className="pl-4 border-l border-brand-borderGray space-y-2 py-1">
-                          {categories.slice(0, 4).map((cat) => (
-                            <Link
-                              key={cat}
-                              href={`/products?category=${encodeURIComponent(cat)}`}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="text-xs text-brand-text hover:text-brand-blue block font-medium"
-                            >
-                              {cat}
-                            </Link>
-                          ))}
+                          {categories.slice(0, 4).map((cat) => {
+                            const catSlug = cat.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                            return (
+                              <Link
+                                key={cat}
+                                href={`/categories/${catSlug}`}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="text-xs text-brand-text hover:text-brand-blue block font-medium"
+                              >
+                                {cat}
+                              </Link>
+                            );
+                          })}
                           <Link
-                            href="/products"
+                            href="/categories"
                             onClick={() => setMobileMenuOpen(false)}
                             className="text-xs text-brand-blue hover:underline block font-semibold"
                           >
@@ -617,9 +658,9 @@ export default function Navbar() {
                         </div>
                       )}
 
-                      {item.type === 'solutions' && (
+                      {item.type === 'solutions' && mobileSolutionsOpen && (
                         <div className="pl-4 border-l border-brand-borderGray space-y-2 py-1">
-                          {solutions.slice(0, 4).map((sol) => (
+                          {solutions.slice(0, 6).map((sol) => (
                             <Link
                               key={sol.id}
                               href={`/solutions/${sol.slug}`}
@@ -629,13 +670,6 @@ export default function Navbar() {
                               {sol.name}
                             </Link>
                           ))}
-                          <Link
-                            href="/solutions"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="text-xs text-brand-blue hover:underline block font-semibold"
-                          >
-                            All Solutions &raquo;
-                          </Link>
                         </div>
                       )}
                     </div>
