@@ -116,7 +116,7 @@ export default function Navbar() {
               <img
                 src="/Lovosis-logo.webp"
                 alt="LOVOSIS Logo"
-                className="h-10 w-auto object-contain"
+                className="h-12 md:h-14 w-auto object-contain"
               />
             </Link>
 
@@ -141,41 +141,42 @@ export default function Navbar() {
                     if (item.type === 'solutions') setSolutionsDropdownOpen(false);
                   }}
                 >
-                  {item.hasDropdown ? (
-                    <button
-                      type="button"
-                      className={`flex items-center gap-1 font-semibold text-base transition-colors py-1 focus:outline-none cursor-pointer ${
-                        pathname.startsWith(item.href) || (item.type === 'products' && pathname.startsWith('/categories'))
-                          ? 'text-brand-blue'
-                          : 'text-brand-black hover:text-brand-blue'
-                      }`}
-                    >
-                      {item.name}
-                      <ChevronDown className="w-4 h-4 opacity-75" />
-                    </button>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className={`flex items-center gap-1 font-semibold text-base transition-colors py-1 ${
-                        (item.href === '/' && pathname === '/') || (item.href !== '/' && pathname.startsWith(item.href))
-                          ? 'text-brand-blue'
-                          : 'text-brand-black hover:text-brand-blue'
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
+                  {(() => {
+                    const isActive = (item.href === '/' && pathname === '/') || 
+                                     (item.href !== '/' && pathname.startsWith(item.href)) ||
+                                     (item.type === 'products' && pathname.startsWith('/categories'));
+
+                    return item.hasDropdown ? (
+                      <button
+                        type="button"
+                        className={`group flex items-center gap-1 font-semibold text-base transition-colors py-1 focus:outline-none cursor-pointer ${
+                          isActive ? 'text-brand-blue' : 'text-brand-black hover:text-brand-blue'
+                        }`}
+                      >
+                        <span className={`relative pb-0.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-blue after:transition-transform after:duration-300 after:origin-left ${
+                          isActive ? 'after:scale-x-100' : 'after:scale-x-0 group-hover:after:scale-x-100'
+                        }`}>
+                          {item.name}
+                        </span>
+                        <ChevronDown className="w-4 h-4 opacity-75" />
+                      </button>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={`group flex items-center gap-1 font-semibold text-base transition-colors py-1 ${
+                          isActive ? 'text-brand-blue' : 'text-brand-black hover:text-brand-blue'
+                        }`}
+                      >
+                        <span className={`relative pb-0.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-blue after:transition-transform after:duration-300 after:origin-left ${
+                          isActive ? 'after:scale-x-100' : 'after:scale-x-0 group-hover:after:scale-x-100'
+                        }`}>
+                          {item.name}
+                        </span>
+                      </Link>
+                    );
+                  })()}
 
                   {/* Active Page Indicator Bar */}
-                  {((item.href === '/' && pathname === '/') || 
-                    (item.href !== '/' && pathname.startsWith(item.href)) ||
-                    (item.type === 'products' && pathname.startsWith('/categories'))) && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute bottom-[-10px] left-0 right-0 h-[3px] bg-brand-blue rounded-full"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
                 </div>
               ))}
 

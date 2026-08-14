@@ -1,16 +1,20 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Calendar, 
   User, 
   ArrowRight,
   ChevronRight,
   Clock,
-  BookOpen
+  BookOpen,
+  X,
+  ClipboardCheck,
+  MessageSquare
 } from 'lucide-react';
+import { triggerQuoteModal } from '@/components/common/QuoteModal';
 
 const featuredPost = {
   id: 1,
@@ -20,7 +24,17 @@ const featuredPost = {
   author: 'Lovosis Security Team',
   date: 'August 10, 2026',
   readTime: '6 min read',
-  image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'
+  image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
+  content: `Artificial intelligence is no longer just a buzzword in security technology; it is the fundamental core driving the next generation of surveillance. As we look towards 2027, the role of security systems is evolving from passive recording devices to proactive threat deterrence machines.
+
+## 1. Real-time Predictive Analytics
+Instead of reviewing footage after an event has occurred, AI systems are trained to recognize patterns and behaviors that precede incidents. For instance, loitering detection combined with facial tracking can alert security staff before vandalism or unauthorized access happens.
+
+## 2. Automated Threat Response
+AI-enabled cameras can trigger automated systems, such as locking down specific entry gates, turning on intense floodlights, or broadcasting pre-recorded warning messages through IP speakers to scare off intruders.
+
+## 3. High-efficiency Search
+Searching through hundreds of hours of video footage is now a matter of seconds. Operators can filter searches by specific attributes, such as "person wearing a red shirt" or "blue delivery truck," making event investigations exceptionally fast.`
 };
 
 const recentPosts = [
@@ -32,7 +46,17 @@ const recentPosts = [
     author: 'Sarah Jenkins',
     date: 'August 02, 2026',
     readTime: '4 min read',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop',
+    content: `Traditional security cameras switch to black-and-white infrared mode at night, causing the loss of crucial color details. ColorHunter cameras solve this by utilizing advanced light capture capabilities to deliver vibrant, full-color footage 24/7.
+
+## 1. Ultra-large F1.0 Aperture
+A larger aperture allows significantly more light to reach the sensor (up to four times more than standard cameras), outputting clear color details even in near-pitch darkness.
+
+## 2. Highly Sensitive Sensors
+Back-illuminated CMOS sensors pull ambient starlight and street lighting to build high-contrast color video without relying on heavy external floodlights.
+
+## 3. Soft Warm Light Deterrence
+If the scene goes into absolute zero light, built-in warm LED light sources activate to illuminate the area gently, acting as a direct deterrent to trespassers.`
   },
   {
     id: 3,
@@ -42,7 +66,17 @@ const recentPosts = [
     author: 'David Chen',
     date: 'July 28, 2026',
     readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2064&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2064&auto=format&fit=crop',
+    content: `Protecting remote agricultural land, storage facilities, and farms presents a serious challenge: the lack of cabling for electricity and network connection. Off-grid solar-powered surveillance is the modern answer.
+
+## 1. Renewable Standalone Power
+High-efficiency solar panels charge industrial-grade batteries during daylight, keeping low-power dome and PTZ cameras running continuously through the night.
+
+## 2. 4G/5G Wireless Connectivity
+Equipped with built-in cellular routers, these cameras broadcast real-time video alerts directly to your smartphone app without requiring physical Wi-Fi routers.
+
+## 3. Rugged Weatherproofing
+Built to withstand dust storm sweeps, heavy agricultural rains, and high heat, these systems operate reliably in extreme farm environments.`
   },
   {
     id: 4,
@@ -52,7 +86,17 @@ const recentPosts = [
     author: 'Lovosis Engineering',
     date: 'July 15, 2026',
     readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=2070&auto=format&fit=crop',
+    content: `False alarms are a major problem for security personnel, often triggered by wind, leaves, small animals, or heavy rainfall. Smart Intrusion Prevention (SIP) uses deep-learning algorithms to target only human and vehicle threats.
+
+## 1. Target Classification
+SIP ignores environmental movements and focuses purely on classifying humans and cars, eliminating up to 99% of false alerts.
+
+## 2. Line Crossing & Intrusion Detection
+Users can draw virtual lines on the camera view. If a classified person crosses this line, the system immediately registers it and triggers alert warnings.
+
+## 3. Active Deterrence Lights
+If a threat is detected inside a restricted zone, the system can instantly flash blue and red lights to notify the intruder that they have been detected.`
   },
   {
     id: 5,
@@ -62,7 +106,17 @@ const recentPosts = [
     author: 'Michael Torres',
     date: 'July 05, 2026',
     readTime: '4 min read',
-    image: 'https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2070&auto=format&fit=crop',
+    content: `Intercom systems are the first line of defense for residential complexes and office buildings. Modern video intercoms offer superior access control features beyond simply speaking through a speaker.
+
+## 1. Crystal-clear Video Intercom
+High-definition wide-angle cameras allow residents to visually verify the identity of visitors before granting entry access.
+
+## 2. Mobile App Integration
+Receive doorbell calls, view live video feeds, and unlock gates remotely from your smartphone from anywhere in the world.
+
+## 3. Smart Access Cards & Face Recognition
+Enable keyless entry for employees and residents using touchless face recognition terminals or RFID tags.`
   },
   {
     id: 6,
@@ -72,7 +126,17 @@ const recentPosts = [
     author: 'Lovosis Security Team',
     date: 'June 22, 2026',
     readTime: '8 min read',
-    image: '/cyber.png'
+    image: '/cyber.png',
+    content: `As network-connected physical security devices grow in popularity, they also become targets for hackers. Protecting your IP cameras from cyber attacks is essential to maintain complete system integrity.
+
+## 1. Change Default Credentials
+Always change factory default passwords to strong, complex passwords immediately during setup.
+
+## 2. Firmware Updates
+Regularly install security patches and firmware updates from manufacturers to resolve discovered software vulnerabilities.
+
+## 3. Network Isolation
+Run your security camera infrastructure on a separate virtual local area network (VLAN) isolated from the primary corporate data network.`
   },
   {
     id: 7,
@@ -82,11 +146,66 @@ const recentPosts = [
     author: 'Sarah Jenkins',
     date: 'June 10, 2026',
     readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop',
+    content: `Security cameras can double as powerful business intelligence tools. Heat map analytics help retailers optimize store layouts by tracking foot traffic.
+
+## 1. High-traffic Zone Identification
+Identify which aisles attract the most shoppers and where customer dwell time is highest.
+
+## 2. Visual Path Analysis
+Optimize product placement and layout flow based on the pathways most frequently walked by shoppers.
+
+## 3. Staffing Optimization
+Deploy sales representatives to high-traffic areas during peak shopper hours.`
   }
 ];
 
 export default function BlogPage() {
+  const [selectedPost, setSelectedPost] = useState<any>(null);
+
+  const renderContent = (content: string) => {
+    if (!content) return null;
+    const sections = content.split('\n\n');
+    return sections.map((section, sIdx) => {
+      if (section.startsWith('## ')) {
+        const title = section.replace('## ', '');
+        return (
+          <h3 key={sIdx} className="text-lg md:text-xl font-bold text-brand-navy pt-5 pb-1 border-b border-slate-100 mb-3 mt-6">
+            {title}
+          </h3>
+        );
+      }
+      if (section.startsWith('- ')) {
+        const items = section.split('\n');
+        return (
+          <ul key={sIdx} className="list-disc pl-5 space-y-2 my-3">
+            {items.map((item, iIdx) => {
+              const cleanItem = item.replace('- ', '');
+              if (cleanItem.includes('**')) {
+                const parts = cleanItem.split('**');
+                return (
+                  <li key={iIdx} className="text-sm text-slate-600 font-medium leading-relaxed">
+                    <span className="font-bold text-brand-navy">{parts[1]}</span>{parts[2]}
+                  </li>
+                );
+              }
+              return (
+                <li key={iIdx} className="text-sm text-slate-600 font-medium leading-relaxed">
+                  {cleanItem}
+                </li>
+              );
+            })}
+          </ul>
+        );
+      }
+      return (
+        <p key={sIdx} className="text-sm leading-relaxed text-slate-600 font-medium mb-3">
+          {section}
+        </p>
+      );
+    });
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
       
@@ -128,7 +247,10 @@ export default function BlogPage() {
             <h2 className="text-2xl font-bold text-brand-navy">Featured Article</h2>
           </div>
           
-          <Link href={`/blog/${featuredPost.id}`} className="group block">
+          <div 
+            onClick={() => setSelectedPost(featuredPost)}
+            className="group block cursor-pointer"
+          >
             <div className="bg-white rounded-[2rem] overflow-hidden shadow-xl border border-slate-100 flex flex-col lg:flex-row hover:shadow-2xl transition-all duration-300">
               <div className="lg:w-7/12 relative h-72 lg:h-auto overflow-hidden bg-slate-100">
                 <img 
@@ -159,7 +281,7 @@ export default function BlogPage() {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         </div>
 
         {/* 3. Recent Posts Grid */}
@@ -170,7 +292,11 @@ export default function BlogPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {recentPosts.map((post) => (
-              <Link href={`/blog/${post.id}`} key={post.id} className="group flex flex-col bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-brand-blue/30 hover:shadow-xl transition-all duration-300">
+              <div 
+                onClick={() => setSelectedPost(post)}
+                key={post.id} 
+                className="group flex flex-col bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-brand-blue/30 hover:shadow-xl transition-all duration-300 cursor-pointer"
+              >
                 <div className="h-56 relative overflow-hidden bg-slate-100">
                   <img 
                     src={post.image} 
@@ -209,7 +335,7 @@ export default function BlogPage() {
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -245,6 +371,115 @@ export default function BlogPage() {
         </div>
 
       </div>
+
+      {/* Blog Details Modal */}
+      <AnimatePresence>
+        {selectedPost && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedPost(null)}
+              className="absolute inset-0 bg-brand-navy/60 backdrop-blur-sm"
+            />
+
+            {/* Modal Content Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="relative bg-white w-full max-w-4xl max-h-[85vh] rounded-3xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden z-10"
+            >
+              {/* Top Bar with Close Button */}
+              <div className="sticky top-0 bg-white/95 backdrop-blur-md px-6 py-4 border-b border-slate-100 flex items-center justify-between z-10">
+                <span className="px-3 py-1 bg-brand-blue/10 text-brand-blue font-bold text-xs uppercase tracking-wider rounded-full">
+                  {selectedPost.category}
+                </span>
+                <button
+                  onClick={() => setSelectedPost(null)}
+                  className="p-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 transition-colors focus:outline-none cursor-pointer"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Scrollable Container */}
+              <div className="overflow-y-auto p-6 md:p-10 space-y-6 custom-scrollbar">
+                
+                {/* Title */}
+                <h2 className="text-2xl md:text-4xl font-extrabold text-brand-navy leading-tight">
+                  {selectedPost.title}
+                </h2>
+
+                {/* Author and Date Meta */}
+                <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-slate-500 uppercase border-b border-slate-100 pb-5">
+                  <span className="flex items-center gap-1">
+                    <User className="w-4 h-4 text-brand-blue" />
+                    {selectedPost.author}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-4 h-4 text-brand-blue" />
+                    {selectedPost.date}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-4 h-4 text-brand-blue" />
+                    {selectedPost.readTime}
+                  </span>
+                </div>
+
+                {/* Cover Image */}
+                <div className="aspect-[16/9] w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-100">
+                  <img
+                    src={selectedPost.image}
+                    alt={selectedPost.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Rendered Body Content */}
+                <div className="prose max-w-none pt-4 text-slate-700">
+                  {renderContent(selectedPost.content)}
+                </div>
+
+              </div>
+
+              {/* Footer Consult CTA */}
+              <div className="sticky bottom-0 bg-slate-50 border-t border-slate-100 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-2.5 text-xs text-slate-500 font-semibold">
+                  <span>Want to learn more? Consult with our technology experts.</span>
+                </div>
+                <div className="flex gap-2.5 w-full sm:w-auto">
+                  <button
+                    onClick={() => {
+                      setSelectedPost(null);
+                      triggerQuoteModal(`Consult from Blog Modal: ${selectedPost.title}`);
+                    }}
+                    className="flex-grow sm:flex-grow-0 bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                  >
+                    <ClipboardCheck className="w-4 h-4" />
+                    Free Consultation
+                  </button>
+                  <a
+                    href={`https://wa.me/+1234567890?text=${encodeURIComponent(`Hello Lovosis! I read your article "${selectedPost.title}" and would like to inquire.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-grow sm:flex-grow-0 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-2.5 px-5 rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                  >
+                    <MessageSquare className="w-4 h-4 fill-white stroke-none" />
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }

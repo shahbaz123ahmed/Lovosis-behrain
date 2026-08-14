@@ -73,7 +73,7 @@ export default function Footer() {
               <img
                 src="/Lovosis-logo.webp"
                 alt="LOVOSIS Logo"
-                className="h-10 w-auto object-contain"
+                className="h-12 md:h-14 w-auto object-contain"
               />
             </Link>
             <p className="text-sm text-brand-borderGray/80 leading-relaxed font-medium">
