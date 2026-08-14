@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   title: "Network Cameras & Advanced Security Solutions Distributor | LOVOSIS",
   description: "Explore professional network cameras, analog cameras, surveillance systems, NVRs, access control, video intercoms, and complete security solutions for homes and businesses.",
   metadataBase: new URL("https://lovosis-security.com"),
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   alternates: {
     canonical: "/",
   },
