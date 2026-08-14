@@ -112,14 +112,12 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-brand-blue text-white p-2 rounded-brand-sm group-hover:bg-brand-navy transition-colors">
-                <Shield className="w-6 h-6" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-extrabold text-xl tracking-tight text-brand-navy">LOVOSIS</span>
-                <span className="text-[9px] uppercase tracking-widest text-brand-blue font-bold">Security Solutions</span>
-              </div>
+            <Link href="/" className="flex items-center group">
+              <img
+                src="/Lovosis-logo.webp"
+                alt="LOVOSIS Logo"
+                className="h-10 w-auto object-contain"
+              />
             </Link>
 
             {/* Desktop Navigation */}

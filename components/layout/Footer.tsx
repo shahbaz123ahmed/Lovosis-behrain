@@ -69,14 +69,12 @@ export default function Footer() {
           
           {/* Column 1: Company Info */}
           <div className="lg:col-span-1 space-y-4">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-brand-blue text-white p-2 rounded-brand-sm group-hover:bg-white group-hover:text-brand-blue transition-colors">
-                <Shield className="w-5 h-5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-extrabold text-lg tracking-tight text-white">LOVOSIS</span>
-                <span className="text-[8px] uppercase tracking-widest text-brand-accent font-bold">Security Solutions</span>
-              </div>
+            <Link href="/" className="flex items-center group">
+              <img
+                src="/Lovosis-logo.webp"
+                alt="LOVOSIS Logo"
+                className="h-10 w-auto object-contain"
+              />
             </Link>
             <p className="text-sm text-brand-borderGray/80 leading-relaxed font-medium">
               Established distributor of top-tier CCTV surveillance products, access control devices, biometric systems, and complete custom security integrations.
